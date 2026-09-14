@@ -1,4 +1,4 @@
-module and_gate_more_bits_vb;
+module and_gate_more_bits_tb;
 
 reg [3:0] a;
 reg [3:0] b;

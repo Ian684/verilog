@@ -1,4 +1,4 @@
-module not_gate_vb;
+module not_gate_tb;
 
 reg a;
 reg b;

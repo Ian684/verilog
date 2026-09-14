@@ -1,4 +1,4 @@
-module or_gate_vb;
+module or_gate_tb;
 
 reg a;
 reg b;
