@@ -1,4 +1,4 @@
-module simple_fsm (
+module mealy_fsm (
     input clk,
     input reset_n,
     input start,
@@ -7,17 +7,14 @@ module simple_fsm (
     output reg done
 );
 
-
-// 記住狀態
 localparam IDLE = 2'b00;
 localparam RUN = 2'b01;
-localparam DONE = 2'b10;
 
 reg [1:0] state;
 reg [1:0] next_state;
 
 always @(posedge clk or negedge reset_n) begin
-    
+
     if (!reset_n)
         state <= IDLE;
     else
@@ -25,20 +22,17 @@ always @(posedge clk or negedge reset_n) begin
 
 end
 
-// 決定下一個狀態
 always @(*) begin
 
     next_state = state;
     case (state) 
         
-        IDLE:   
+        IDLE:
             if (start)
                 next_state = RUN;
         RUN:
             if (finish)
-                next_state = DONE;
-        DONE:   
-            next_state = IDLE;
+                next_state = IDLE;
         default:
             next_state = IDLE;
 
@@ -46,27 +40,36 @@ always @(*) begin
 
 end
 
-// 根據 state 決定輸出
 always @(*) begin
 
     busy = 1'b0;
     done = 1'b0;
-    
+
     case (state)
+
         IDLE: begin
-            busy = 1'b0;
-            done = 1'b0;
+            if (start) begin
+                busy = 1'b1;
+                done = 1'b0;
+            end
+            else begin
+                busy = 1'b0;
+                done = 1'b0;
+            end
         end
         RUN: begin
-            busy = 1'b1;
-            done = 1'b0;
+            if (finish) begin
+                busy = 1'b0;
+                done = 1'b1;
+            end
+            else begin
+                busy = 1'b1;
+                done = 1'b0;
+            end
         end
-        DONE: begin
-            busy = 1'b0;
-            done = 1'b1;
-        end
+
     endcase
 
 end
 
-endmodule 
+endmodule
