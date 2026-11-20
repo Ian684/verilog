@@ -1,0 +1,2 @@
+module fifo_small(input clk,reset,wr,rd,input[7:0]din,output reg[7:0]dout,output reg empty,full);reg[7:0]mem[0:3];reg[2:0]count;reg[1:0]wp,rp;always@(posedge clk)begin if(reset)begin count<=0;wp<=0;rp<=0;dout<=0;end else begin if(wr&&!full)begin mem[wp]<=din;wp<=wp+1;end if(rd&&!empty)begin dout<=mem[rp];rp<=rp+1;end case({wr&&!full,rd&&!empty})2'b10:count<=count+1;2'b01:count<=count-1;endcase end end always@*begin empty=count==0;full=count==4;end endmodule
+

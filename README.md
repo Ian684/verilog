@@ -21,3 +21,7 @@ vvp /tmp/exercise.out
 
 The existing `sim` files remain untouched; they document the original
 simulation commands for the earlier exercises.
+
+## More exercises
+
+The collection now also covers multiplexing, encoding, arithmetic blocks, parity, shifting, ALU design, storage, handshakes, counters, timing, and simple communication blocks.
