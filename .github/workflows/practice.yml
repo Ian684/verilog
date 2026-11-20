@@ -1,0 +1,17 @@
+name: Practice checks
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  practice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run practice checks
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y iverilog
+          sh practice/run_tests.sh
