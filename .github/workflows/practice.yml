@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run practice checks
         run: |
+          python3 check_catalog.py
           sudo apt-get update -qq
           sudo apt-get install -y iverilog
           sh practice/run_tests.sh

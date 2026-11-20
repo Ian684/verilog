@@ -1,0 +1,232 @@
+[
+  {
+    "id": 5,
+    "name": "mux2",
+    "title": "二選一多工器"
+  },
+  {
+    "id": 6,
+    "name": "mux4",
+    "title": "四選一多工器"
+  },
+  {
+    "id": 7,
+    "name": "demux",
+    "title": "一對四解多工"
+  },
+  {
+    "id": 8,
+    "name": "decoder",
+    "title": "三對八解碼器"
+  },
+  {
+    "id": 9,
+    "name": "priority",
+    "title": "高位優先編碼"
+  },
+  {
+    "id": 10,
+    "name": "onehot",
+    "title": "One-hot 有效性編碼"
+  },
+  {
+    "id": 11,
+    "name": "parity",
+    "title": "奇偶同位元"
+  },
+  {
+    "id": 12,
+    "name": "majority",
+    "title": "三輸入多數決"
+  },
+  {
+    "id": 13,
+    "name": "rising",
+    "title": "上升緣單週期偵測"
+  },
+  {
+    "id": 14,
+    "name": "falling",
+    "title": "下降緣單週期偵測"
+  },
+  {
+    "id": 15,
+    "name": "half_adder",
+    "title": "半加器"
+  },
+  {
+    "id": 16,
+    "name": "full_adder",
+    "title": "全加器"
+  },
+  {
+    "id": 17,
+    "name": "adder8",
+    "title": "八位元帶進位加法"
+  },
+  {
+    "id": 18,
+    "name": "addsub",
+    "title": "加減法單元"
+  },
+  {
+    "id": 19,
+    "name": "sat_add",
+    "title": "無號飽和加法"
+  },
+  {
+    "id": 20,
+    "name": "signed_compare",
+    "title": "有號大小比較"
+  },
+  {
+    "id": 21,
+    "name": "absolute",
+    "title": "二補數絕對值"
+  },
+  {
+    "id": 22,
+    "name": "minmax",
+    "title": "無號最小最大"
+  },
+  {
+    "id": 23,
+    "name": "barrel",
+    "title": "邏輯桶式位移"
+  },
+  {
+    "id": 24,
+    "name": "rotate",
+    "title": "循環左移"
+  },
+  {
+    "id": 25,
+    "name": "binary_gray",
+    "title": "二進位轉 Gray"
+  },
+  {
+    "id": 26,
+    "name": "gray_binary",
+    "title": "Gray 還原二進位"
+  },
+  {
+    "id": 27,
+    "name": "popcount",
+    "title": "組合邏輯人口計數"
+  },
+  {
+    "id": 28,
+    "name": "leading_zero",
+    "title": "前導零數量"
+  },
+  {
+    "id": 29,
+    "name": "seven_segment",
+    "title": "七段顯示器字形"
+  },
+  {
+    "id": 30,
+    "name": "bcd_binary",
+    "title": "BCD 轉二進位"
+  },
+  {
+    "id": 31,
+    "name": "binary_bcd",
+    "title": "二進位轉兩位 BCD"
+  },
+  {
+    "id": 32,
+    "name": "bcd_add",
+    "title": "BCD 進位修正"
+  },
+  {
+    "id": 33,
+    "name": "reverse_bits",
+    "title": "位元次序反轉"
+  },
+  {
+    "id": 34,
+    "name": "sign_extend",
+    "title": "符號擴展到十六位元"
+  },
+  {
+    "id": 35,
+    "name": "enabled_register",
+    "title": "使能暫存器"
+  },
+  {
+    "id": 36,
+    "name": "shift_register",
+    "title": "序列輸入移位暫存器"
+  },
+  {
+    "id": 37,
+    "name": "pipeline_multiply",
+    "title": "兩級乘法流水線"
+  },
+  {
+    "id": 38,
+    "name": "synchronizer",
+    "title": "兩級同步器的數位模型"
+  },
+  {
+    "id": 39,
+    "name": "toggle",
+    "title": "T 型正反器"
+  },
+  {
+    "id": 40,
+    "name": "pulse_stretch",
+    "title": "三週期脈衝延長"
+  },
+  {
+    "id": 41,
+    "name": "mod10",
+    "title": "十進位循環計數器"
+  },
+  {
+    "id": 42,
+    "name": "updown",
+    "title": "上下循環計數器"
+  },
+  {
+    "id": 43,
+    "name": "lfsr",
+    "title": "八位元 LFSR"
+  },
+  {
+    "id": 44,
+    "name": "clock_enable",
+    "title": "四週期 clock enable"
+  },
+  {
+    "id": 45,
+    "name": "pwm",
+    "title": "十六階 PWM"
+  },
+  {
+    "id": 46,
+    "name": "serial_parity",
+    "title": "序列同位元累積"
+  },
+  {
+    "id": 47,
+    "name": "sequence101",
+    "title": "可重疊 101 偵測"
+  },
+  {
+    "id": 48,
+    "name": "round_robin",
+    "title": "二請求公平仲裁"
+  },
+  {
+    "id": 49,
+    "name": "elastic",
+    "title": "單筆 ready-valid 緩衝"
+  },
+  {
+    "id": 50,
+    "name": "timer",
+    "title": "可重新載入倒數計時器"
+  }
+]

@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "title": "UART 8N1",
+    "source": "practice/uart_tx.v",
+    "entry": "practice_uart_tx",
+    "goal": ""
+  },
+  {
+    "id": 2,
+    "title": "Ready-valid FIFO",
+    "source": "practice/fifo.v",
+    "entry": "practice_fifo",
+    "goal": ""
+  },
+  {
+    "id": 3,
+    "title": "去彈跳",
+    "source": "practice/debounce.v",
+    "entry": "practice_debounce",
+    "goal": ""
+  },
+  {
+    "id": 4,
+    "title": "飽和計數",
+    "source": "practice/saturating_counter.v",
+    "entry": "practice_saturating_counter",
+    "goal": ""
+  },
+  {
+    "id": 5,
+    "title": "二選一多工器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_mux2",
+    "goal": ""
+  },
+  {
+    "id": 6,
+    "title": "四選一多工器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_mux4",
+    "goal": ""
+  },
+  {
+    "id": 7,
+    "title": "一對四解多工",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_demux",
+    "goal": ""
+  },
+  {
+    "id": 8,
+    "title": "三對八解碼器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_decoder",
+    "goal": ""
+  },
+  {
+    "id": 9,
+    "title": "高位優先編碼",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_priority",
+    "goal": ""
+  },
+  {
+    "id": 10,
+    "title": "One-hot 有效性編碼",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_onehot",
+    "goal": ""
+  },
+  {
+    "id": 11,
+    "title": "奇偶同位元",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_parity",
+    "goal": ""
+  },
+  {
+    "id": 12,
+    "title": "三輸入多數決",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_majority",
+    "goal": ""
+  },
+  {
+    "id": 13,
+    "title": "上升緣單週期偵測",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_rising",
+    "goal": ""
+  },
+  {
+    "id": 14,
+    "title": "下降緣單週期偵測",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_falling",
+    "goal": ""
+  },
+  {
+    "id": 15,
+    "title": "半加器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_half_adder",
+    "goal": ""
+  },
+  {
+    "id": 16,
+    "title": "全加器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_full_adder",
+    "goal": ""
+  },
+  {
+    "id": 17,
+    "title": "八位元帶進位加法",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_adder8",
+    "goal": ""
+  },
+  {
+    "id": 18,
+    "title": "加減法單元",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_addsub",
+    "goal": ""
+  },
+  {
+    "id": 19,
+    "title": "無號飽和加法",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_sat_add",
+    "goal": ""
+  },
+  {
+    "id": 20,
+    "title": "有號大小比較",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_signed_compare",
+    "goal": ""
+  },
+  {
+    "id": 21,
+    "title": "二補數絕對值",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_absolute",
+    "goal": ""
+  },
+  {
+    "id": 22,
+    "title": "無號最小最大",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_minmax",
+    "goal": ""
+  },
+  {
+    "id": 23,
+    "title": "邏輯桶式位移",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_barrel",
+    "goal": ""
+  },
+  {
+    "id": 24,
+    "title": "循環左移",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_rotate",
+    "goal": ""
+  },
+  {
+    "id": 25,
+    "title": "二進位轉 Gray",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_binary_gray",
+    "goal": ""
+  },
+  {
+    "id": 26,
+    "title": "Gray 還原二進位",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_gray_binary",
+    "goal": ""
+  },
+  {
+    "id": 27,
+    "title": "組合邏輯人口計數",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_popcount",
+    "goal": ""
+  },
+  {
+    "id": 28,
+    "title": "前導零數量",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_leading_zero",
+    "goal": ""
+  },
+  {
+    "id": 29,
+    "title": "七段顯示器字形",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_seven_segment",
+    "goal": ""
+  },
+  {
+    "id": 30,
+    "title": "BCD 轉二進位",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_bcd_binary",
+    "goal": ""
+  },
+  {
+    "id": 31,
+    "title": "二進位轉兩位 BCD",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_binary_bcd",
+    "goal": ""
+  },
+  {
+    "id": 32,
+    "title": "BCD 進位修正",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_bcd_add",
+    "goal": ""
+  },
+  {
+    "id": 33,
+    "title": "位元次序反轉",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_reverse_bits",
+    "goal": ""
+  },
+  {
+    "id": 34,
+    "title": "符號擴展到十六位元",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_sign_extend",
+    "goal": ""
+  },
+  {
+    "id": 35,
+    "title": "使能暫存器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_enabled_register",
+    "goal": ""
+  },
+  {
+    "id": 36,
+    "title": "序列輸入移位暫存器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_shift_register",
+    "goal": ""
+  },
+  {
+    "id": 37,
+    "title": "兩級乘法流水線",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_pipeline_multiply",
+    "goal": ""
+  },
+  {
+    "id": 38,
+    "title": "兩級同步器的數位模型",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_synchronizer",
+    "goal": ""
+  },
+  {
+    "id": 39,
+    "title": "T 型正反器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_toggle",
+    "goal": ""
+  },
+  {
+    "id": 40,
+    "title": "三週期脈衝延長",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_pulse_stretch",
+    "goal": ""
+  },
+  {
+    "id": 41,
+    "title": "十進位循環計數器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_mod10",
+    "goal": ""
+  },
+  {
+    "id": 42,
+    "title": "上下循環計數器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_updown",
+    "goal": ""
+  },
+  {
+    "id": 43,
+    "title": "八位元 LFSR",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_lfsr",
+    "goal": ""
+  },
+  {
+    "id": 44,
+    "title": "四週期 clock enable",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_clock_enable",
+    "goal": ""
+  },
+  {
+    "id": 45,
+    "title": "十六階 PWM",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_pwm",
+    "goal": ""
+  },
+  {
+    "id": 46,
+    "title": "序列同位元累積",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_serial_parity",
+    "goal": ""
+  },
+  {
+    "id": 47,
+    "title": "可重疊 101 偵測",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_sequence101",
+    "goal": ""
+  },
+  {
+    "id": 48,
+    "title": "二請求公平仲裁",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_round_robin",
+    "goal": ""
+  },
+  {
+    "id": 49,
+    "title": "單筆 ready-valid 緩衝",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_elastic",
+    "goal": ""
+  },
+  {
+    "id": 50,
+    "title": "可重新載入倒數計時器",
+    "source": "practice/more_modules.sv",
+    "entry": "lab_timer",
+    "goal": ""
+  }
+]

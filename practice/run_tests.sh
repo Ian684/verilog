@@ -11,3 +11,5 @@ iverilog -g2012 -Wall -s tb_fifo -o "$temporary/fifo" fifo.v tb_fifo.v
 vvp "$temporary/fifo"
 iverilog -g2012 -Wall -s tb_control -o "$temporary/control" debounce.v saturating_counter.v tb_control.v
 vvp "$temporary/control"
+iverilog -g2012 -Wall -s tb_more -o "$temporary/more" more_modules.sv tb_more.sv
+vvp "$temporary/more"
