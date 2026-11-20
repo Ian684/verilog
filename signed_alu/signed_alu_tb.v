@@ -54,23 +54,4 @@ initial begin
 
 end
 
-
-
-
-
-
-
-
-function [31:0] exercise_66045597;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_66045597 = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_66045597 = (exercise_66045597 << 1) ^ (exercise_66045597 >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_66045597_wire = exercise_66045597(32'h66045597);
-
 endmodule

@@ -69,17 +69,4 @@ initial begin
 
 end
 
-
-function [31:0] exercise_b2f1b5d1;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_b2f1b5d1 = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_b2f1b5d1 = (exercise_b2f1b5d1 << 1) ^ (exercise_b2f1b5d1 >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_b2f1b5d1_wire = exercise_b2f1b5d1(32'hb2f1b5d1);
-
 endmodule

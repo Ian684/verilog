@@ -1,22 +1,22 @@
-module priority_encoder(
-input wire clk,input wire rst_n,input wire enable,input wire [7:0] data_in,
-output reg [7:0] data_out
+module priority_encoder (
+    input  wire [7:0] data_in,
+    output reg  [2:0] index,
+    output reg        valid
 );
-reg [7:0] state_27;
-reg [7:0] scratch_27;
-always @(posedge clk or negedge rst_n) begin
-if(!rst_n)begin
-state_27<=0;scratch_27<=0;data_out<=0;
-end else if(enable)begin
-scratch_27<=data_in;
-state_27<=state_27+1;
-case(state_27[2:0])
-3'd0:data_out<=scratch_27+data_in;
-3'd1:data_out<=scratch_27-data_in;
-3'd2:data_out<=scratch_27^data_in;
-3'd3:data_out<={data_in[3:0],scratch_27[3:0]};
-default:data_out<=scratch_27&data_in;
-endcase
-end
-end
+    always @* begin
+        valid = |data_in;
+        index = 0;
+        casex (data_in)
+            8'b1xxxxxxx: index = 7;
+            8'b01xxxxxx: index = 6;
+            8'b001xxxxx: index = 5;
+            8'b0001xxxx: index = 4;
+            8'b00001xxx: index = 3;
+            8'b000001xx: index = 2;
+            8'b0000001x: index = 1;
+            8'b00000001: index = 0;
+            default:     index = 0;
+        endcase
+        if (!valid) index = 0;
+    end
 endmodule

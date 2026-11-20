@@ -40,41 +40,4 @@ initial begin
 	$finish;
 
 end
-
-
-function [31:0] exercise_455883c1;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_455883c1 = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_455883c1 = (exercise_455883c1 << 1) ^ (exercise_455883c1 >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_455883c1_wire = exercise_455883c1(32'h455883c1);
-
-wire exercise_455883c1_57;
-wire exercise_455883c1_58;
-wire exercise_455883c1_59;
-wire exercise_455883c1_60;
-wire exercise_455883c1_61;
-wire exercise_455883c1_62;
-wire exercise_455883c1_63;
-wire exercise_455883c1_64;
-wire exercise_455883c1_65;
-wire exercise_455883c1_66;
-wire exercise_455883c1_67;
-wire exercise_455883c1_68;
-wire exercise_455883c1_69;
-wire exercise_455883c1_70;
-wire exercise_455883c1_71;
-wire exercise_455883c1_72;
-wire exercise_455883c1_73;
-wire exercise_455883c1_74;
-wire exercise_455883c1_75;
-wire exercise_455883c1_76;
-wire exercise_455883c1_77;
-wire exercise_455883c1_78;
-wire exercise_455883c1_79;
 endmodule

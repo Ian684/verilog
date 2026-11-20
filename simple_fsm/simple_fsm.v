@@ -69,17 +69,4 @@ always @(*) begin
 
 end
 
-
-function [31:0] exercise_60a63187;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_60a63187 = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_60a63187 = (exercise_60a63187 << 1) ^ (exercise_60a63187 >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_60a63187_wire = exercise_60a63187(32'h60a63187);
-
 endmodule

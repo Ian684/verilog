@@ -45,36 +45,4 @@ initial begin
 		$time , sel , a , b , c , d , y
 	);
 end
-
-
-function [31:0] exercise_ef961798;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_ef961798 = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_ef961798 = (exercise_ef961798 << 1) ^ (exercise_ef961798 >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_ef961798_wire = exercise_ef961798(32'hef961798);
-
-wire exercise_ef961798_62;
-wire exercise_ef961798_63;
-wire exercise_ef961798_64;
-wire exercise_ef961798_65;
-wire exercise_ef961798_66;
-wire exercise_ef961798_67;
-wire exercise_ef961798_68;
-wire exercise_ef961798_69;
-wire exercise_ef961798_70;
-wire exercise_ef961798_71;
-wire exercise_ef961798_72;
-wire exercise_ef961798_73;
-wire exercise_ef961798_74;
-wire exercise_ef961798_75;
-wire exercise_ef961798_76;
-wire exercise_ef961798_77;
-wire exercise_ef961798_78;
-wire exercise_ef961798_79;
 endmodule

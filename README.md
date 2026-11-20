@@ -1,27 +1,12 @@
-# Verilog practice
+# Verilog Practice
 
-The repository contains small RTL and testbench exercises. Existing examples
-cover gates, adders, multiplexers, registers, counters, ALUs, and FSMs.
+Small RTL modules and Icarus Verilog testbenches.
 
-Additional exercises now cover:
-
-- `priority_encoder`: combinational priority selection
-- `edge_detector`: synchronous rising/falling edge detection
-- `debounce`: stable-input filtering
-- `one_hot_fsm`: one-hot state-machine sequencing
-- `pulse_stretcher`: extending a one-cycle event
-
-Each exercise keeps its module and testbench in the same directory. With
-Icarus Verilog installed, run an individual testbench with:
+## Run a testbench
 
 ```bash
-iverilog -g2012 -o /tmp/exercise.out module.v module_tb.v
-vvp /tmp/exercise.out
+iverilog -g2012 -o exercise.out exercise/exercise.v exercise/exercise_tb.v
+vvp exercise.out
 ```
 
-The existing `sim` files remain untouched; they document the original
-simulation commands for the earlier exercises.
-
-## More exercises
-
-The collection now also covers multiplexing, encoding, arithmetic blocks, parity, shifting, ALU design, storage, handshakes, counters, timing, and simple communication blocks.
+Replace `exercise` with the directory and filenames for the selected example. Simulation binaries and waveforms are not tracked.
