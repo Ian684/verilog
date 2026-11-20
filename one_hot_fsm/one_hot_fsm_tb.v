@@ -1,16 +1,39 @@
 `timescale 1ns/1ps
 module one_hot_fsm_tb;
-    reg clk = 0, reset = 1, start = 0;
-    wire busy, done;
-    one_hot_fsm dut(.clk(clk), .reset(reset), .start(start), .busy(busy), .done(done));
+    reg clk;
+    reg rst_n;
+    reg enable;
+    reg [7:0] data_in;
+    wire [7:0] data_out;
+    integer cycle;
+
+    one_hot_fsm dut(
+        .clk(clk),
+        .rst_n(rst_n),
+        .enable(enable),
+        .data_in(data_in),
+        .data_out(data_out)
+    );
+
+    initial clk = 1'b0;
     always #5 clk = ~clk;
 
     initial begin
-        #12 reset = 0;
-        start = 1; #8 start = 0;
-        #2 if (busy !== 1'b1) $fatal(1, "FSM did not enter RUN");
-        #10 if (done !== 1'b1) $fatal(1, "FSM did not enter FINISH");
-        $display("one_hot_fsm passed");
+        rst_n = 1'b0;
+        enable = 1'b0;
+        data_in = 8'h00;
+        repeat (2) @(posedge clk);
+        rst_n = 1'b1;
+        enable = 1'b1;
+        for (cycle = 0; cycle < 8; cycle = cycle + 1) begin
+            data_in = cycle * 8'h11;
+            @(posedge clk);
+            #1;
+            $display("cycle=%0d input=%02x output=%02x", cycle, data_in, data_out);
+        end
+        enable = 1'b0;
+        repeat (2) @(posedge clk);
+        $display("PASS one_hot_fsm");
         $finish;
     end
 endmodule

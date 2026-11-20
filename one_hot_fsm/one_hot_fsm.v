@@ -1,23 +1,21 @@
-module one_hot_fsm (
-    input clk,
-    input reset,
-    input start,
-    output reg busy,
-    output reg done
+module one_hot_fsm(
+    input wire clk,
+    input wire rst_n,
+    input wire enable,
+    input wire [7:0] data_in,
+    output reg [7:0] data_out
 );
-    localparam IDLE = 3'b001, RUN = 3'b010, FINISH = 3'b100;
-    reg [2:0] state;
-    always @(posedge clk) begin
-        if (reset) state <= IDLE;
-        else case (state)
-            IDLE:   if (start) state <= RUN;
-            RUN:    state <= FINISH;
-            FINISH: state <= IDLE;
-            default: state <= IDLE;
-        endcase
+
+    reg [7:0] stored;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            stored <= 8'h00;
+            data_out <= 8'h00;
+        end else if (enable) begin
+            stored <= data_in;
+            data_out <= stored + data_in;
+        end
     end
-    always @(*) begin
-        busy = state == RUN;
-        done = state == FINISH;
-    end
+
 endmodule

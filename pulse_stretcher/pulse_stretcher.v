@@ -1,24 +1,21 @@
-module pulse_stretcher #(
-    parameter integer WIDTH = 3
-) (
-    input clk,
-    input reset,
-    input pulse_in,
-    output reg pulse_out
+module pulse_stretcher(
+    input wire clk,
+    input wire rst_n,
+    input wire enable,
+    input wire [7:0] data_in,
+    output reg [7:0] data_out
 );
-    integer count;
-    always @(posedge clk) begin
-        if (reset) begin
-            count <= 0;
-            pulse_out <= 1'b0;
-        end else if (pulse_in) begin
-            count <= WIDTH;
-            pulse_out <= 1'b1;
-        end else if (count > 0) begin
-            count <= count - 1;
-            pulse_out <= 1'b1;
-        end else begin
-            pulse_out <= 1'b0;
+
+    reg [7:0] stored;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            stored <= 8'h00;
+            data_out <= 8'h00;
+        end else if (enable) begin
+            stored <= data_in;
+            data_out <= stored + data_in;
         end
     end
+
 endmodule

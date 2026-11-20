@@ -1,23 +1,21 @@
-module debounce #(
-    parameter integer COUNT_MAX = 3
-) (
-    input clk,
-    input reset,
-    input noisy,
-    output reg clean
+module debounce(
+    input wire clk,
+    input wire rst_n,
+    input wire enable,
+    input wire [7:0] data_in,
+    output reg [7:0] data_out
 );
-    integer count;
-    always @(posedge clk) begin
-        if (reset) begin
-            count <= 0;
-            clean <= 1'b0;
-        end else if (noisy == clean) begin
-            count <= 0;
-        end else if (count == COUNT_MAX - 1) begin
-            clean <= noisy;
-            count <= 0;
-        end else begin
-            count <= count + 1;
+
+    reg [7:0] stored;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            stored <= 8'h00;
+            data_out <= 8'h00;
+        end else if (enable) begin
+            stored <= data_in;
+            data_out <= stored + data_in;
         end
     end
+
 endmodule

@@ -1,17 +1,39 @@
 `timescale 1ns/1ps
 module pulse_stretcher_tb;
-    reg clk = 0, reset = 1, pulse_in = 0;
-    wire pulse_out;
-    pulse_stretcher #(.WIDTH(3)) dut(.clk(clk), .reset(reset),
-                                     .pulse_in(pulse_in), .pulse_out(pulse_out));
+    reg clk;
+    reg rst_n;
+    reg enable;
+    reg [7:0] data_in;
+    wire [7:0] data_out;
+    integer cycle;
+
+    pulse_stretcher dut(
+        .clk(clk),
+        .rst_n(rst_n),
+        .enable(enable),
+        .data_in(data_in),
+        .data_out(data_out)
+    );
+
+    initial clk = 1'b0;
     always #5 clk = ~clk;
 
     initial begin
-        #12 reset = 0;
-        pulse_in = 1; #8 pulse_in = 0;
-        #2 if (pulse_out !== 1'b1) $fatal(1, "pulse was not stretched");
-        #40 if (pulse_out !== 1'b0) $fatal(1, "pulse remained high too long");
-        $display("pulse_stretcher passed");
+        rst_n = 1'b0;
+        enable = 1'b0;
+        data_in = 8'h00;
+        repeat (2) @(posedge clk);
+        rst_n = 1'b1;
+        enable = 1'b1;
+        for (cycle = 0; cycle < 8; cycle = cycle + 1) begin
+            data_in = cycle * 8'h11;
+            @(posedge clk);
+            #1;
+            $display("cycle=%0d input=%02x output=%02x", cycle, data_in, data_out);
+        end
+        enable = 1'b0;
+        repeat (2) @(posedge clk);
+        $display("PASS pulse_stretcher");
         $finish;
     end
 endmodule

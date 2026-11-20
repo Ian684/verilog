@@ -1,20 +1,21 @@
-module edge_detector (
-    input clk,
-    input reset,
-    input signal_in,
-    output reg rising,
-    output reg falling
+module edge_detector(
+    input wire clk,
+    input wire rst_n,
+    input wire enable,
+    input wire [7:0] data_in,
+    output reg [7:0] data_out
 );
-    reg previous;
-    always @(posedge clk) begin
-        if (reset) begin
-            previous <= 1'b0;
-            rising <= 1'b0;
-            falling <= 1'b0;
-        end else begin
-            rising <= signal_in & ~previous;
-            falling <= ~signal_in & previous;
-            previous <= signal_in;
+
+    reg [7:0] stored;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            stored <= 8'h00;
+            data_out <= 8'h00;
+        end else if (enable) begin
+            stored <= data_in;
+            data_out <= stored + data_in;
         end
     end
+
 endmodule

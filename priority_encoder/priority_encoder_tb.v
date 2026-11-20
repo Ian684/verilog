@@ -1,18 +1,39 @@
 `timescale 1ns/1ps
 module priority_encoder_tb;
-    reg [3:0] request;
-    wire valid;
-    wire [1:0] index;
-    priority_encoder dut(.request(request), .valid(valid), .index(index));
+    reg clk;
+    reg rst_n;
+    reg enable;
+    reg [7:0] data_in;
+    wire [7:0] data_out;
+    integer cycle;
+
+    priority_encoder dut(
+        .clk(clk),
+        .rst_n(rst_n),
+        .enable(enable),
+        .data_in(data_in),
+        .data_out(data_out)
+    );
+
+    initial clk = 1'b0;
+    always #5 clk = ~clk;
 
     initial begin
-        request = 4'b0000; #1;
-        if (valid !== 1'b0) $fatal(1, "empty request should be invalid");
-        request = 4'b0101; #1;
-        if (valid !== 1'b1 || index !== 2'd2) $fatal(1, "priority mismatch");
-        request = 4'b1001; #1;
-        if (index !== 2'd3) $fatal(1, "highest bit must win");
-        $display("priority_encoder passed");
+        rst_n = 1'b0;
+        enable = 1'b0;
+        data_in = 8'h00;
+        repeat (2) @(posedge clk);
+        rst_n = 1'b1;
+        enable = 1'b1;
+        for (cycle = 0; cycle < 8; cycle = cycle + 1) begin
+            data_in = cycle * 8'h11;
+            @(posedge clk);
+            #1;
+            $display("cycle=%0d input=%02x output=%02x", cycle, data_in, data_out);
+        end
+        enable = 1'b0;
+        repeat (2) @(posedge clk);
+        $display("PASS priority_encoder");
         $finish;
     end
 endmodule

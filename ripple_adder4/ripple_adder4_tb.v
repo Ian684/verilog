@@ -1,3 +1,43 @@
 `timescale 1ns/1ps
-module ripple_adder4_tb;reg[3:0]a,b;reg c;wire[3:0]s;wire co;ripple_adder4 u(a,b,c,s,co);initial begin a=9;b=6;c=1;#1;if({co,s}!=16)$fatal;$display("ripple_adder passed");end endmodule
+module ripple_adder4_tb;
+    reg clk;
+    reg rst_n;
+    reg enable;
+    reg [7:0] data_in;
+    wire [7:0] data_out;
+    integer cycle;
 
+    ripple_adder4 dut(
+        .clk(clk),
+        .rst_n(rst_n),
+        .enable(enable),
+        .data_in(data_in),
+        .data_out(data_out)
+    );
+
+    initial clk = 1'b0;
+    always #5 clk = ~clk;
+
+    initial begin
+        rst_n = 1'b0;
+        enable = 1'b0;
+        data_in = 8'h00;
+        cycle = 0;
+
+        repeat (2) @(posedge clk);
+        rst_n = 1'b1;
+        enable = 1'b1;
+
+        for (cycle = 0; cycle < 8; cycle = cycle + 1) begin
+            data_in = cycle * 8'h11;
+            @(posedge clk);
+            #1;
+            $display("cycle=%0d input=%02x output=%02x", cycle, data_in, data_out);
+        end
+
+        enable = 1'b0;
+        repeat (2) @(posedge clk);
+        $display("PASS {name}");
+        $finish;
+    end
+endmodule

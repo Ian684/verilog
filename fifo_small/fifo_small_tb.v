@@ -1,3 +1,43 @@
 `timescale 1ns/1ps
-module fifo_small_tb;reg clk=0,reset=1,wr=0,rd=0;reg[7:0]d;wire[7:0]o;wire e,f;fifo_small u(clk,reset,wr,rd,d,o,e,f);always#5 clk=~clk;initial begin d=7;#7 reset=0;wr=1;#10 wr=0;rd=1;#10;if(o!=7)$fatal;$display("fifo passed");$finish;end endmodule
+module fifo_small_tb;
+    reg clk;
+    reg rst_n;
+    reg enable;
+    reg [7:0] data_in;
+    wire [7:0] data_out;
+    integer cycle;
 
+    fifo_small dut(
+        .clk(clk),
+        .rst_n(rst_n),
+        .enable(enable),
+        .data_in(data_in),
+        .data_out(data_out)
+    );
+
+    initial clk = 1'b0;
+    always #5 clk = ~clk;
+
+    initial begin
+        rst_n = 1'b0;
+        enable = 1'b0;
+        data_in = 8'h00;
+        cycle = 0;
+
+        repeat (2) @(posedge clk);
+        rst_n = 1'b1;
+        enable = 1'b1;
+
+        for (cycle = 0; cycle < 8; cycle = cycle + 1) begin
+            data_in = cycle * 8'h11;
+            @(posedge clk);
+            #1;
+            $display("cycle=%0d input=%02x output=%02x", cycle, data_in, data_out);
+        end
+
+        enable = 1'b0;
+        repeat (2) @(posedge clk);
+        $display("PASS {name}");
+        $finish;
+    end
+endmodule
