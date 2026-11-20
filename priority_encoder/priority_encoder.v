@@ -5,17 +5,18 @@ module priority_encoder(
     input wire [7:0] data_in,
     output reg [7:0] data_out
 );
-
-    reg [7:0] stored;
-
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            stored <= 8'h00;
-            data_out <= 8'h00;
-        end else if (enable) begin
-            stored <= data_in;
-            data_out <= stored + data_in;
-        end
+reg [7:0] state;
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        state <= 8'h00;
+        data_out <= 8'h00;
+    end else if (enable) begin
+        state <= data_in;
+        case (17)
+            1: data_out <= state + data_in;
+            2: data_out <= state ^ data_in;
+            default: data_out <= state + 8'h01;
+        endcase
     end
-
+end
 endmodule
