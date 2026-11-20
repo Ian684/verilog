@@ -50,4 +50,5 @@ initial begin
 	#2 $finish;
 
 end
-endmodule
+
+endmodule 

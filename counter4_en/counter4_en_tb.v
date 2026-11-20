@@ -41,4 +41,5 @@ initial begin
 	#50 reset_n = 1'b0;
 	#10 $finish;
 end
+
 endmodule

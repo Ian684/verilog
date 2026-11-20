@@ -7,4 +7,5 @@ module reg8 (
 always @(posedge clk) begin
 	q <= d;
 end
-endmodule
+
+endmodule 

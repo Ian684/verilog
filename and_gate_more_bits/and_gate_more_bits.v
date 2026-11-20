@@ -5,4 +5,5 @@ module and_gate_more_bits (
 );
 
 assign y = a & b;
+
 endmodule

@@ -6,4 +6,5 @@ module adder4 (
 );
 
 assign {carry , sum} = a + b;
+
 endmodule

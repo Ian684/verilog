@@ -1,22 +1,75 @@
-module mealy_fsm(
-input wire clk,input wire rst_n,input wire enable,input wire [7:0] data_in,
-output reg [7:0] data_out
+module mealy_fsm (
+    input clk,
+    input reset_n,
+    input start,
+    input finish,
+    output reg busy,
+    output reg done
 );
-reg [7:0] state_25;
-reg [7:0] scratch_25;
-always @(posedge clk or negedge rst_n) begin
-if(!rst_n)begin
-state_25<=0;scratch_25<=0;data_out<=0;
-end else if(enable)begin
-scratch_25<=data_in;
-state_25<=state_25+1;
-case(state_25[2:0])
-3'd0:data_out<=scratch_25+data_in;
-3'd1:data_out<=scratch_25-data_in;
-3'd2:data_out<=scratch_25^data_in;
-3'd3:data_out<={data_in[3:0],scratch_25[3:0]};
-default:data_out<=scratch_25&data_in;
-endcase
+
+localparam IDLE = 2'b00;
+localparam RUN = 2'b01;
+
+reg [1:0] state;
+reg [1:0] next_state;
+
+always @(posedge clk or negedge reset_n) begin
+
+    if (!reset_n)
+        state <= IDLE;
+    else
+        state <= next_state;
+
 end
+
+always @(*) begin
+
+    next_state = state;
+    case (state) 
+        
+        IDLE:
+            if (start)
+                next_state = RUN;
+        RUN:
+            if (finish)
+                next_state = IDLE;
+        default:
+            next_state = IDLE;
+
+    endcase
+
 end
+
+always @(*) begin
+
+    busy = 1'b0;
+    done = 1'b0;
+
+    case (state)
+
+        IDLE: begin
+            if (start) begin
+                busy = 1'b1;
+                done = 1'b0;
+            end
+            else begin
+                busy = 1'b0;
+                done = 1'b0;
+            end
+        end
+        RUN: begin
+            if (finish) begin
+                busy = 1'b0;
+                done = 1'b1;
+            end
+            else begin
+                busy = 1'b1;
+                done = 1'b0;
+            end
+        end
+
+    endcase
+
+end
+
 endmodule

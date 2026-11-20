@@ -14,4 +14,5 @@ always @(posedge clk or negedge reset_n) begin
 		q <= {q[6:0], serial_in};
 
 end
+
 endmodule

@@ -1,0 +1,44 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x59d0f72ff870 .scope module, "and_gate_more_bits_vb" "and_gate_more_bits_vb" 2 1;
+ .timescale 0 0;
+v0x59d0f73111e0_0 .var "a", 3 0;
+v0x59d0f73112d0_0 .var "b", 3 0;
+v0x59d0f73113a0_0 .net "y", 3 0, L_0x59d0f73114a0;  1 drivers
+S_0x59d0f72ffa00 .scope module, "uut" "and_gate_more_bits" 2 8, 3 1 0, S_0x59d0f72ff870;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "a";
+    .port_info 1 /INPUT 4 "b";
+    .port_info 2 /OUTPUT 4 "y";
+L_0x59d0f73114a0 .functor AND 4, v0x59d0f73111e0_0, v0x59d0f73112d0_0, C4<1111>, C4<1111>;
+v0x59d0f72ffc30_0 .net "a", 3 0, v0x59d0f73111e0_0;  1 drivers
+v0x59d0f7310fc0_0 .net "b", 3 0, v0x59d0f73112d0_0;  1 drivers
+v0x59d0f73110a0_0 .net "y", 3 0, L_0x59d0f73114a0;  alias, 1 drivers
+    .scope S_0x59d0f72ff870;
+T_0 ;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x59d0f73111e0_0, 0, 4;
+    %pushi/vec4 12, 0, 4;
+    %store/vec4 v0x59d0f73112d0_0, 0, 4;
+    %delay 10, 0;
+    %vpi_call 2 20 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x59d0f72ff870;
+T_1 ;
+    %vpi_call 2 24 "$monitor", "time=%0t , a=%b , b=%b , y=%b", $time, v0x59d0f73111e0_0, v0x59d0f73112d0_0, v0x59d0f73113a0_0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "and_gate_more_bits_vb.v";
+    "and_gate_more_bits.v";

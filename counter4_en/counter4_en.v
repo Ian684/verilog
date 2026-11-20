@@ -11,4 +11,5 @@ always @(posedge clk or negedge reset_n) begin
 	else if (enable)
 		count <= count + 1'b1;
 end
+
 endmodule

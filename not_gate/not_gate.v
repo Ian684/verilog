@@ -6,4 +6,5 @@ module not_gate(
 );
 
 assign y = (a & b) | (~c);
+
 endmodule
