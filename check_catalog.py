@@ -11,4 +11,4 @@ for item in items:
     path=(ROOT/item['source']).resolve()
     assert path.is_relative_to(ROOT) and path.is_file(),item
     if item.get('entry'):assert item['entry'] in path.read_text(encoding='utf-8'),item
-print(f'{ROOT.name}: {expected} source-backed exercise entries verified')
+print(f'{ROOT.name}: exercise catalog verified')

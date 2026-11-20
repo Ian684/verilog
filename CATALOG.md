@@ -1,11 +1,11 @@
-# 50 題練習目錄
+# 練習目錄
 
-題號代表獨立實作單元，不把測試案例、重複輸入或程式行數算成額外題目。原本的專案檔案仍保留，以下是這次有說明及驗證的 50 個單元。
+目錄列出各題的實作位置與執行入口。
 
 ## 執行與驗證
 
     sh practice/run_tests.sh
-    # 題號 5–50 的測試在 practice/tb_more.sv，來源為 more_modules.sv
+    # more_modules.sv 的測試在 practice/tb_more.sv
 
 ## 題目
 

@@ -94,7 +94,7 @@ must(bcd_valid===((i%16)<10&&(j%16)<10),"BCD add valid");if(bcd_valid)begin expe
 for(k=0;k<8;k=k+1)must(reverse_y[k]===a[7-k],"reverse bits");
 expected=i>=128?65280+i:i;must(extend_y===expected[15:0],"sign extension");
 end
-$display("28 combinational exercises: all 65536 input pairs passed");
+$display("Combinational exercises: all 65536 input pairs passed");
 reset_all();signal=1;tick();must(rise_y&&!fall_y,"rising pulse");tick();must(!rise_y,"rising only one cycle");signal=0;tick();must(fall_y&&!rise_y,"falling pulse");tick();must(!fall_y,"falling only one cycle");
 reset_all();enable=1;a=3;tick();must(reg_y==3,"enabled load");enable=0;a=9;tick();must(reg_y==3,"register hold");
 reset_all();enable=1;pattern=8'ha5;for(n=7;n>=0;n=n-1)begin serial=pattern[n];tick();end must(shift_y==8'ha5,"serial shift order");
@@ -112,8 +112,8 @@ reset_all();valid=1;hits=0;for(n=4;n>=0;n=n-1)begin serial=(5'b10101>>n)&1;tick(
 reset_all();request=3;accept=1;#1;must(grant==1,"arbiter first");tick();must(grant==2,"arbiter alternates");tick();must(grant==1,"arbiter repeats");accept=0;tick();must(grant==1,"arbiter stalls");request=0;#1;must(grant==0,"arbiter idle");
 reset_all();valid=1;a=8'h11;tick();must(out_valid&&out_data==8'h11&&!in_ready,"elastic fill");a=8'h22;tick();must(out_data==8'h11,"elastic stall stable");out_ready=1;tick();must(out_valid&&out_data==8'h22,"elastic replace");valid=0;tick();must(!out_valid&&in_ready,"elastic drain");
 reset_all();start=1;load_value=3;tick();must(timer_busy&&!timer_done,"timer start");start=0;tick();must(timer_busy&&!timer_done,"timer two");tick();must(timer_busy&&!timer_done,"timer one");tick();must(!timer_busy&&timer_done,"timer done");tick();must(!timer_done,"done pulse");start=1;load_value=0;tick();must(timer_done&&!timer_busy,"timer zero");
-$display("18 sequential exercises: reset, holds, latency, period and handshake passed");
-$display("46 additional Verilog modules passed");$finish;
+$display("Sequential exercises: reset, holds, latency, period and handshake passed");
+$display("Verilog modules passed");$finish;
 end
 initial begin #2000000;$fatal(1,"timeout");end
 endmodule

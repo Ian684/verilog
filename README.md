@@ -1,10 +1,10 @@
 # Verilog 數位邏輯練習
 
-**目前共 50 個實作練習單元。** 完整題號、來源與執行方式見 [CATALOG.md](CATALOG.md)，機器可讀清單見 [EXERCISES.json](EXERCISES.json)。
+完整題號、來源與執行方式見 [CATALOG.md](CATALOG.md)，機器可讀清單見 [EXERCISES.json](EXERCISES.json)。
 
 以下保留起步練習的說明；其餘題目按完整目錄閱讀。
 
-原有邏輯閘、計數器與 FSM 目錄保留。新增 practice/ 把四個模組的介面、時序與 testbench 放在一起，以 Icarus Verilog 驗證。
+原有邏輯閘、計數器與 FSM 目錄保留。新增 practice/ 把模組的介面、時序與 testbench 放在一起，以 Icarus Verilog 驗證。
 
     sh practice/run_tests.sh
 
