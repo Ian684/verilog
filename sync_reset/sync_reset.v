@@ -1,80 +1,80 @@
-module sync_reset (
-    input wire clk,
-    input wire rst_n,
-    input wire enable,
-    input wire [7:0] data_in,
-    input wire [2:0] address,
-    output reg [7:0] data_out,
-    output reg valid
+module sync_reset(
+input wire clk,input wire rst_n,input wire enable,input wire [7:0] data_in,
+output reg [7:0] data_out
 );
-reg [7:0] state;
-reg [7:0] scratch;
-reg [7:0] register_array [0:7];
-integer index;
-
+reg [7:0] state_20;
+reg [7:0] scratch_20;
 always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        state <= 8'h00;
-        scratch <= 8'h00;
-        data_out <= 8'h00;
-        valid <= 1'b0;
-        for (index = 0; index < 8; index = index + 1)
-            register_array[index] <= 8'h00;
-    end else if (enable) begin
-        valid <= 1'b1;
-        scratch <= data_in;
-        state <= state + 8'h01;
-        register_array[address] <= data_in;
-        case (data_in[1:0])
-            2'b00: data_out <= scratch ^ data_in;
-            2'b01: data_out <= state + data_in;
-            2'b10: data_out <= register_array[address] + 8'h5;
-            default: data_out <= data_in | state;
-        endcase
-    end else begin
-        valid <= 1'b0;
-    end
+if(!rst_n)begin
+state_20<=0;scratch_20<=0;data_out<=0;
+end else if(enable)begin
+scratch_20<=data_in;
+state_20<=state_20+1;
+case(state_20[2:0])
+3'd0:data_out<=scratch_20+data_in;
+3'd1:data_out<=scratch_20-data_in;
+3'd2:data_out<=scratch_20^data_in;
+3'd3:data_out<={data_in[3:0],scratch_20[3:0]};
+default:data_out<=scratch_20&data_in;
+endcase
 end
-
-function [7:0] invert_byte;
-    input [7:0] source;
-    integer bit_index;
-    begin
-        invert_byte = 8'h00;
-        for (bit_index = 0; bit_index < 8; bit_index = bit_index + 1)
-            invert_byte[bit_index] = ~source[7 - bit_index];
-    end
-endfunction
-
-wire [7:0] transformed = invert_byte(data_in);
-
-
-function [31:0] exercise_bbfc1e4e;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_bbfc1e4e = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_bbfc1e4e = (exercise_bbfc1e4e << 1) ^ (exercise_bbfc1e4e >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_bbfc1e4e_wire = exercise_bbfc1e4e(32'hbbfc1e4e);
-
-wire exercise_bbfc1e4e_64;
-wire exercise_bbfc1e4e_65;
-wire exercise_bbfc1e4e_66;
-wire exercise_bbfc1e4e_67;
-wire exercise_bbfc1e4e_68;
-wire exercise_bbfc1e4e_69;
-wire exercise_bbfc1e4e_70;
-wire exercise_bbfc1e4e_71;
-wire exercise_bbfc1e4e_72;
-wire exercise_bbfc1e4e_73;
-wire exercise_bbfc1e4e_74;
-wire exercise_bbfc1e4e_75;
-wire exercise_bbfc1e4e_76;
-wire exercise_bbfc1e4e_77;
-wire exercise_bbfc1e4e_78;
-wire exercise_bbfc1e4e_79;
+wire exercise_20_22;
+wire exercise_20_23;
+wire exercise_20_24;
+wire exercise_20_25;
+wire exercise_20_26;
+wire exercise_20_27;
+wire exercise_20_28;
+wire exercise_20_29;
+wire exercise_20_30;
+wire exercise_20_31;
+wire exercise_20_32;
+wire exercise_20_33;
+wire exercise_20_34;
+wire exercise_20_35;
+wire exercise_20_36;
+wire exercise_20_37;
+wire exercise_20_38;
+wire exercise_20_39;
+wire exercise_20_40;
+wire exercise_20_41;
+wire exercise_20_42;
+wire exercise_20_43;
+wire exercise_20_44;
+wire exercise_20_45;
+wire exercise_20_46;
+wire exercise_20_47;
+wire exercise_20_48;
+wire exercise_20_49;
+wire exercise_20_50;
+wire exercise_20_51;
+wire exercise_20_52;
+wire exercise_20_53;
+wire exercise_20_54;
+wire exercise_20_55;
+wire exercise_20_56;
+wire exercise_20_57;
+wire exercise_20_58;
+wire exercise_20_59;
+wire exercise_20_60;
+wire exercise_20_61;
+wire exercise_20_62;
+wire exercise_20_63;
+wire exercise_20_64;
+wire exercise_20_65;
+wire exercise_20_66;
+wire exercise_20_67;
+wire exercise_20_68;
+wire exercise_20_69;
+wire exercise_20_70;
+wire exercise_20_71;
+wire exercise_20_72;
+wire exercise_20_73;
+wire exercise_20_74;
+wire exercise_20_75;
+wire exercise_20_76;
+wire exercise_20_77;
+wire exercise_20_78;
+wire exercise_20_79;
+end
 endmodule

@@ -1,80 +1,80 @@
-module full_adder (
-    input wire clk,
-    input wire rst_n,
-    input wire enable,
-    input wire [7:0] data_in,
-    input wire [2:0] address,
-    output reg [7:0] data_out,
-    output reg valid
+module full_adder(
+input wire clk,input wire rst_n,input wire enable,input wire [7:0] data_in,
+output reg [7:0] data_out
 );
-reg [7:0] state;
-reg [7:0] scratch;
-reg [7:0] register_array [0:7];
-integer index;
-
+reg [7:0] state_09;
+reg [7:0] scratch_09;
 always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        state <= 8'h00;
-        scratch <= 8'h00;
-        data_out <= 8'h00;
-        valid <= 1'b0;
-        for (index = 0; index < 8; index = index + 1)
-            register_array[index] <= 8'h00;
-    end else if (enable) begin
-        valid <= 1'b1;
-        scratch <= data_in;
-        state <= state + 8'h01;
-        register_array[address] <= data_in;
-        case (data_in[1:0])
-            2'b00: data_out <= scratch ^ data_in;
-            2'b01: data_out <= state + data_in;
-            2'b10: data_out <= register_array[address] + 8'h5;
-            default: data_out <= data_in | state;
-        endcase
-    end else begin
-        valid <= 1'b0;
-    end
+if(!rst_n)begin
+state_09<=0;scratch_09<=0;data_out<=0;
+end else if(enable)begin
+scratch_09<=data_in;
+state_09<=state_09+1;
+case(state_09[2:0])
+3'd0:data_out<=scratch_09+data_in;
+3'd1:data_out<=scratch_09-data_in;
+3'd2:data_out<=scratch_09^data_in;
+3'd3:data_out<={data_in[3:0],scratch_09[3:0]};
+default:data_out<=scratch_09&data_in;
+endcase
 end
-
-function [7:0] invert_byte;
-    input [7:0] source;
-    integer bit_index;
-    begin
-        invert_byte = 8'h00;
-        for (bit_index = 0; bit_index < 8; bit_index = bit_index + 1)
-            invert_byte[bit_index] = ~source[7 - bit_index];
-    end
-endfunction
-
-wire [7:0] transformed = invert_byte(data_in);
-
-
-function [31:0] exercise_e6480961;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_e6480961 = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_e6480961 = (exercise_e6480961 << 1) ^ (exercise_e6480961 >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_e6480961_wire = exercise_e6480961(32'he6480961);
-
-wire exercise_e6480961_64;
-wire exercise_e6480961_65;
-wire exercise_e6480961_66;
-wire exercise_e6480961_67;
-wire exercise_e6480961_68;
-wire exercise_e6480961_69;
-wire exercise_e6480961_70;
-wire exercise_e6480961_71;
-wire exercise_e6480961_72;
-wire exercise_e6480961_73;
-wire exercise_e6480961_74;
-wire exercise_e6480961_75;
-wire exercise_e6480961_76;
-wire exercise_e6480961_77;
-wire exercise_e6480961_78;
-wire exercise_e6480961_79;
+wire exercise_09_22;
+wire exercise_09_23;
+wire exercise_09_24;
+wire exercise_09_25;
+wire exercise_09_26;
+wire exercise_09_27;
+wire exercise_09_28;
+wire exercise_09_29;
+wire exercise_09_30;
+wire exercise_09_31;
+wire exercise_09_32;
+wire exercise_09_33;
+wire exercise_09_34;
+wire exercise_09_35;
+wire exercise_09_36;
+wire exercise_09_37;
+wire exercise_09_38;
+wire exercise_09_39;
+wire exercise_09_40;
+wire exercise_09_41;
+wire exercise_09_42;
+wire exercise_09_43;
+wire exercise_09_44;
+wire exercise_09_45;
+wire exercise_09_46;
+wire exercise_09_47;
+wire exercise_09_48;
+wire exercise_09_49;
+wire exercise_09_50;
+wire exercise_09_51;
+wire exercise_09_52;
+wire exercise_09_53;
+wire exercise_09_54;
+wire exercise_09_55;
+wire exercise_09_56;
+wire exercise_09_57;
+wire exercise_09_58;
+wire exercise_09_59;
+wire exercise_09_60;
+wire exercise_09_61;
+wire exercise_09_62;
+wire exercise_09_63;
+wire exercise_09_64;
+wire exercise_09_65;
+wire exercise_09_66;
+wire exercise_09_67;
+wire exercise_09_68;
+wire exercise_09_69;
+wire exercise_09_70;
+wire exercise_09_71;
+wire exercise_09_72;
+wire exercise_09_73;
+wire exercise_09_74;
+wire exercise_09_75;
+wire exercise_09_76;
+wire exercise_09_77;
+wire exercise_09_78;
+wire exercise_09_79;
+end
 endmodule

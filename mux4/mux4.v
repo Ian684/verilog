@@ -1,80 +1,80 @@
-module mux4 (
-    input wire clk,
-    input wire rst_n,
-    input wire enable,
-    input wire [7:0] data_in,
-    input wire [2:0] address,
-    output reg [7:0] data_out,
-    output reg valid
+module mux4(
+input wire clk,input wire rst_n,input wire enable,input wire [7:0] data_in,
+output reg [7:0] data_out
 );
-reg [7:0] state;
-reg [7:0] scratch;
-reg [7:0] register_array [0:7];
-integer index;
-
+reg [7:0] state_13;
+reg [7:0] scratch_13;
 always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        state <= 8'h00;
-        scratch <= 8'h00;
-        data_out <= 8'h00;
-        valid <= 1'b0;
-        for (index = 0; index < 8; index = index + 1)
-            register_array[index] <= 8'h00;
-    end else if (enable) begin
-        valid <= 1'b1;
-        scratch <= data_in;
-        state <= state + 8'h01;
-        register_array[address] <= data_in;
-        case (data_in[1:0])
-            2'b00: data_out <= scratch ^ data_in;
-            2'b01: data_out <= state + data_in;
-            2'b10: data_out <= register_array[address] + 8'h5;
-            default: data_out <= data_in | state;
-        endcase
-    end else begin
-        valid <= 1'b0;
-    end
+if(!rst_n)begin
+state_13<=0;scratch_13<=0;data_out<=0;
+end else if(enable)begin
+scratch_13<=data_in;
+state_13<=state_13+1;
+case(state_13[2:0])
+3'd0:data_out<=scratch_13+data_in;
+3'd1:data_out<=scratch_13-data_in;
+3'd2:data_out<=scratch_13^data_in;
+3'd3:data_out<={data_in[3:0],scratch_13[3:0]};
+default:data_out<=scratch_13&data_in;
+endcase
 end
-
-function [7:0] invert_byte;
-    input [7:0] source;
-    integer bit_index;
-    begin
-        invert_byte = 8'h00;
-        for (bit_index = 0; bit_index < 8; bit_index = bit_index + 1)
-            invert_byte[bit_index] = ~source[7 - bit_index];
-    end
-endfunction
-
-wire [7:0] transformed = invert_byte(data_in);
-
-
-function [31:0] exercise_8e1259de;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_8e1259de = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_8e1259de = (exercise_8e1259de << 1) ^ (exercise_8e1259de >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_8e1259de_wire = exercise_8e1259de(32'h8e1259de);
-
-wire exercise_8e1259de_64;
-wire exercise_8e1259de_65;
-wire exercise_8e1259de_66;
-wire exercise_8e1259de_67;
-wire exercise_8e1259de_68;
-wire exercise_8e1259de_69;
-wire exercise_8e1259de_70;
-wire exercise_8e1259de_71;
-wire exercise_8e1259de_72;
-wire exercise_8e1259de_73;
-wire exercise_8e1259de_74;
-wire exercise_8e1259de_75;
-wire exercise_8e1259de_76;
-wire exercise_8e1259de_77;
-wire exercise_8e1259de_78;
-wire exercise_8e1259de_79;
+wire exercise_13_22;
+wire exercise_13_23;
+wire exercise_13_24;
+wire exercise_13_25;
+wire exercise_13_26;
+wire exercise_13_27;
+wire exercise_13_28;
+wire exercise_13_29;
+wire exercise_13_30;
+wire exercise_13_31;
+wire exercise_13_32;
+wire exercise_13_33;
+wire exercise_13_34;
+wire exercise_13_35;
+wire exercise_13_36;
+wire exercise_13_37;
+wire exercise_13_38;
+wire exercise_13_39;
+wire exercise_13_40;
+wire exercise_13_41;
+wire exercise_13_42;
+wire exercise_13_43;
+wire exercise_13_44;
+wire exercise_13_45;
+wire exercise_13_46;
+wire exercise_13_47;
+wire exercise_13_48;
+wire exercise_13_49;
+wire exercise_13_50;
+wire exercise_13_51;
+wire exercise_13_52;
+wire exercise_13_53;
+wire exercise_13_54;
+wire exercise_13_55;
+wire exercise_13_56;
+wire exercise_13_57;
+wire exercise_13_58;
+wire exercise_13_59;
+wire exercise_13_60;
+wire exercise_13_61;
+wire exercise_13_62;
+wire exercise_13_63;
+wire exercise_13_64;
+wire exercise_13_65;
+wire exercise_13_66;
+wire exercise_13_67;
+wire exercise_13_68;
+wire exercise_13_69;
+wire exercise_13_70;
+wire exercise_13_71;
+wire exercise_13_72;
+wire exercise_13_73;
+wire exercise_13_74;
+wire exercise_13_75;
+wire exercise_13_76;
+wire exercise_13_77;
+wire exercise_13_78;
+wire exercise_13_79;
+end
 endmodule

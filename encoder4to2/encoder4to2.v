@@ -1,80 +1,80 @@
-module encoder4to2 (
-    input wire clk,
-    input wire rst_n,
-    input wire enable,
-    input wire [7:0] data_in,
-    input wire [2:0] address,
-    output reg [7:0] data_out,
-    output reg valid
+module encoder4to2(
+input wire clk,input wire rst_n,input wire enable,input wire [7:0] data_in,
+output reg [7:0] data_out
 );
-reg [7:0] state;
-reg [7:0] scratch;
-reg [7:0] register_array [0:7];
-integer index;
-
+reg [7:0] state_07;
+reg [7:0] scratch_07;
 always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        state <= 8'h00;
-        scratch <= 8'h00;
-        data_out <= 8'h00;
-        valid <= 1'b0;
-        for (index = 0; index < 8; index = index + 1)
-            register_array[index] <= 8'h00;
-    end else if (enable) begin
-        valid <= 1'b1;
-        scratch <= data_in;
-        state <= state + 8'h01;
-        register_array[address] <= data_in;
-        case (data_in[1:0])
-            2'b00: data_out <= scratch ^ data_in;
-            2'b01: data_out <= state + data_in;
-            2'b10: data_out <= register_array[address] + 8'h5;
-            default: data_out <= data_in | state;
-        endcase
-    end else begin
-        valid <= 1'b0;
-    end
+if(!rst_n)begin
+state_07<=0;scratch_07<=0;data_out<=0;
+end else if(enable)begin
+scratch_07<=data_in;
+state_07<=state_07+1;
+case(state_07[2:0])
+3'd0:data_out<=scratch_07+data_in;
+3'd1:data_out<=scratch_07-data_in;
+3'd2:data_out<=scratch_07^data_in;
+3'd3:data_out<={data_in[3:0],scratch_07[3:0]};
+default:data_out<=scratch_07&data_in;
+endcase
 end
-
-function [7:0] invert_byte;
-    input [7:0] source;
-    integer bit_index;
-    begin
-        invert_byte = 8'h00;
-        for (bit_index = 0; bit_index < 8; bit_index = bit_index + 1)
-            invert_byte[bit_index] = ~source[7 - bit_index];
-    end
-endfunction
-
-wire [7:0] transformed = invert_byte(data_in);
-
-
-function [31:0] exercise_30d24909;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_30d24909 = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_30d24909 = (exercise_30d24909 << 1) ^ (exercise_30d24909 >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_30d24909_wire = exercise_30d24909(32'h30d24909);
-
-wire exercise_30d24909_64;
-wire exercise_30d24909_65;
-wire exercise_30d24909_66;
-wire exercise_30d24909_67;
-wire exercise_30d24909_68;
-wire exercise_30d24909_69;
-wire exercise_30d24909_70;
-wire exercise_30d24909_71;
-wire exercise_30d24909_72;
-wire exercise_30d24909_73;
-wire exercise_30d24909_74;
-wire exercise_30d24909_75;
-wire exercise_30d24909_76;
-wire exercise_30d24909_77;
-wire exercise_30d24909_78;
-wire exercise_30d24909_79;
+wire exercise_07_22;
+wire exercise_07_23;
+wire exercise_07_24;
+wire exercise_07_25;
+wire exercise_07_26;
+wire exercise_07_27;
+wire exercise_07_28;
+wire exercise_07_29;
+wire exercise_07_30;
+wire exercise_07_31;
+wire exercise_07_32;
+wire exercise_07_33;
+wire exercise_07_34;
+wire exercise_07_35;
+wire exercise_07_36;
+wire exercise_07_37;
+wire exercise_07_38;
+wire exercise_07_39;
+wire exercise_07_40;
+wire exercise_07_41;
+wire exercise_07_42;
+wire exercise_07_43;
+wire exercise_07_44;
+wire exercise_07_45;
+wire exercise_07_46;
+wire exercise_07_47;
+wire exercise_07_48;
+wire exercise_07_49;
+wire exercise_07_50;
+wire exercise_07_51;
+wire exercise_07_52;
+wire exercise_07_53;
+wire exercise_07_54;
+wire exercise_07_55;
+wire exercise_07_56;
+wire exercise_07_57;
+wire exercise_07_58;
+wire exercise_07_59;
+wire exercise_07_60;
+wire exercise_07_61;
+wire exercise_07_62;
+wire exercise_07_63;
+wire exercise_07_64;
+wire exercise_07_65;
+wire exercise_07_66;
+wire exercise_07_67;
+wire exercise_07_68;
+wire exercise_07_69;
+wire exercise_07_70;
+wire exercise_07_71;
+wire exercise_07_72;
+wire exercise_07_73;
+wire exercise_07_74;
+wire exercise_07_75;
+wire exercise_07_76;
+wire exercise_07_77;
+wire exercise_07_78;
+wire exercise_07_79;
+end
 endmodule

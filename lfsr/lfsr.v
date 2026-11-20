@@ -1,80 +1,80 @@
-module lfsr (
-    input wire clk,
-    input wire rst_n,
-    input wire enable,
-    input wire [7:0] data_in,
-    input wire [2:0] address,
-    output reg [7:0] data_out,
-    output reg valid
+module lfsr(
+input wire clk,input wire rst_n,input wire enable,input wire [7:0] data_in,
+output reg [7:0] data_out
 );
-reg [7:0] state;
-reg [7:0] scratch;
-reg [7:0] register_array [0:7];
-integer index;
-
+reg [7:0] state_11;
+reg [7:0] scratch_11;
 always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        state <= 8'h00;
-        scratch <= 8'h00;
-        data_out <= 8'h00;
-        valid <= 1'b0;
-        for (index = 0; index < 8; index = index + 1)
-            register_array[index] <= 8'h00;
-    end else if (enable) begin
-        valid <= 1'b1;
-        scratch <= data_in;
-        state <= state + 8'h01;
-        register_array[address] <= data_in;
-        case (data_in[1:0])
-            2'b00: data_out <= scratch ^ data_in;
-            2'b01: data_out <= state + data_in;
-            2'b10: data_out <= register_array[address] + 8'h5;
-            default: data_out <= data_in | state;
-        endcase
-    end else begin
-        valid <= 1'b0;
-    end
+if(!rst_n)begin
+state_11<=0;scratch_11<=0;data_out<=0;
+end else if(enable)begin
+scratch_11<=data_in;
+state_11<=state_11+1;
+case(state_11[2:0])
+3'd0:data_out<=scratch_11+data_in;
+3'd1:data_out<=scratch_11-data_in;
+3'd2:data_out<=scratch_11^data_in;
+3'd3:data_out<={data_in[3:0],scratch_11[3:0]};
+default:data_out<=scratch_11&data_in;
+endcase
 end
-
-function [7:0] invert_byte;
-    input [7:0] source;
-    integer bit_index;
-    begin
-        invert_byte = 8'h00;
-        for (bit_index = 0; bit_index < 8; bit_index = bit_index + 1)
-            invert_byte[bit_index] = ~source[7 - bit_index];
-    end
-endfunction
-
-wire [7:0] transformed = invert_byte(data_in);
-
-
-function [31:0] exercise_3f6fc93c;
-    input [31:0] source;
-    integer index;
-    begin
-        exercise_3f6fc93c = source;
-        for (index = 0; index < 16; index = index + 1)
-            exercise_3f6fc93c = (exercise_3f6fc93c << 1) ^ (exercise_3f6fc93c >> 3);
-    end
-endfunction
-
-wire [31:0] exercise_3f6fc93c_wire = exercise_3f6fc93c(32'h3f6fc93c);
-
-wire exercise_3f6fc93c_64;
-wire exercise_3f6fc93c_65;
-wire exercise_3f6fc93c_66;
-wire exercise_3f6fc93c_67;
-wire exercise_3f6fc93c_68;
-wire exercise_3f6fc93c_69;
-wire exercise_3f6fc93c_70;
-wire exercise_3f6fc93c_71;
-wire exercise_3f6fc93c_72;
-wire exercise_3f6fc93c_73;
-wire exercise_3f6fc93c_74;
-wire exercise_3f6fc93c_75;
-wire exercise_3f6fc93c_76;
-wire exercise_3f6fc93c_77;
-wire exercise_3f6fc93c_78;
-wire exercise_3f6fc93c_79;
+wire exercise_11_22;
+wire exercise_11_23;
+wire exercise_11_24;
+wire exercise_11_25;
+wire exercise_11_26;
+wire exercise_11_27;
+wire exercise_11_28;
+wire exercise_11_29;
+wire exercise_11_30;
+wire exercise_11_31;
+wire exercise_11_32;
+wire exercise_11_33;
+wire exercise_11_34;
+wire exercise_11_35;
+wire exercise_11_36;
+wire exercise_11_37;
+wire exercise_11_38;
+wire exercise_11_39;
+wire exercise_11_40;
+wire exercise_11_41;
+wire exercise_11_42;
+wire exercise_11_43;
+wire exercise_11_44;
+wire exercise_11_45;
+wire exercise_11_46;
+wire exercise_11_47;
+wire exercise_11_48;
+wire exercise_11_49;
+wire exercise_11_50;
+wire exercise_11_51;
+wire exercise_11_52;
+wire exercise_11_53;
+wire exercise_11_54;
+wire exercise_11_55;
+wire exercise_11_56;
+wire exercise_11_57;
+wire exercise_11_58;
+wire exercise_11_59;
+wire exercise_11_60;
+wire exercise_11_61;
+wire exercise_11_62;
+wire exercise_11_63;
+wire exercise_11_64;
+wire exercise_11_65;
+wire exercise_11_66;
+wire exercise_11_67;
+wire exercise_11_68;
+wire exercise_11_69;
+wire exercise_11_70;
+wire exercise_11_71;
+wire exercise_11_72;
+wire exercise_11_73;
+wire exercise_11_74;
+wire exercise_11_75;
+wire exercise_11_76;
+wire exercise_11_77;
+wire exercise_11_78;
+wire exercise_11_79;
+end
 endmodule
