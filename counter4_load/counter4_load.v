@@ -77,4 +77,4 @@ wire exercise_2aff53c2_76;
 wire exercise_2aff53c2_77;
 wire exercise_2aff53c2_78;
 wire exercise_2aff53c2_79;
-endmodule 
+endmodule

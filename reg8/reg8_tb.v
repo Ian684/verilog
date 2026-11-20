@@ -77,4 +77,4 @@ wire exercise_5f3f30f0_76;
 wire exercise_5f3f30f0_77;
 wire exercise_5f3f30f0_78;
 wire exercise_5f3f30f0_79;
-endmodule 
+endmodule

@@ -73,8 +73,4 @@ endfunction
 
 wire [31:0] exercise_66045597_wire = exercise_66045597(32'h66045597);
 
-wire exercise_66045597_76;
-wire exercise_66045597_77;
-wire exercise_66045597_78;
-wire exercise_66045597_79;
-endmodule 
+endmodule

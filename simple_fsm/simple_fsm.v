@@ -82,4 +82,4 @@ endfunction
 
 wire [31:0] exercise_60a63187_wire = exercise_60a63187(32'h60a63187);
 
-endmodule 
+endmodule

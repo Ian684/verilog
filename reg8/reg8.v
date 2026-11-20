@@ -77,4 +77,4 @@ wire exercise_9bea5b99_76;
 wire exercise_9bea5b99_77;
 wire exercise_9bea5b99_78;
 wire exercise_9bea5b99_79;
-endmodule 
+endmodule
