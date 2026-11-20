@@ -4,24 +4,77 @@ reg clk;
 reg rst_n;
 reg enable;
 reg [7:0] data_in;
+reg [2:0] address;
 wire [7:0] data_out;
+wire valid;
 integer cycle;
-fifo_small dut(.clk(clk),.rst_n(rst_n),.enable(enable),.data_in(data_in),.data_out(data_out));
-initial clk = 0;
-always #5 clk = ~clk;
+fifo_small dut(
+    .clk(clk), .rst_n(rst_n), .enable(enable),
+    .data_in(data_in), .address(address),
+    .data_out(data_out), .valid(valid)
+);
+initial begin clk = 1'b0; forever #5 clk = ~clk; end
 initial begin
-    rst_n = 0;
-    enable = 0;
-    data_in = 0;
-    repeat(2) @(posedge clk);
-    rst_n = 1;
-    enable = 1;
-    for(cycle=0;cycle<8;cycle=cycle+1) begin
-        data_in = cycle * 8'h11;
+    rst_n = 1'b0;
+    enable = 1'b0;
+    data_in = 8'h00;
+    address = 3'b000;
+    repeat (3) @(posedge clk);
+    rst_n = 1'b1;
+    for (cycle = 0; cycle < 16; cycle = cycle + 1) begin
+        enable = 1'b1;
+        address = cycle[2:0];
+        data_in = cycle * 8'h13;
         @(posedge clk);
         #1;
-        $display("Exercise 09: circular FIFO cycle=%0d input=%02x output=%02x", cycle, data_in, data_out);
+        $display("Exercise 08: small circular queue cycle=%0d address=%0d input=%02x output=%02x valid=%b",
+                 cycle, address, data_in, data_out, valid);
     end
+    enable = 1'b0;
+    repeat (3) @(posedge clk);
     $finish;
 end
+
+function [31:0] exercise_85c6eb2a;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_85c6eb2a = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_85c6eb2a = (exercise_85c6eb2a << 1) ^ (exercise_85c6eb2a >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_85c6eb2a_wire = exercise_85c6eb2a(32'h85c6eb2a);
+
+wire exercise_85c6eb2a_50;
+wire exercise_85c6eb2a_51;
+wire exercise_85c6eb2a_52;
+wire exercise_85c6eb2a_53;
+wire exercise_85c6eb2a_54;
+wire exercise_85c6eb2a_55;
+wire exercise_85c6eb2a_56;
+wire exercise_85c6eb2a_57;
+wire exercise_85c6eb2a_58;
+wire exercise_85c6eb2a_59;
+wire exercise_85c6eb2a_60;
+wire exercise_85c6eb2a_61;
+wire exercise_85c6eb2a_62;
+wire exercise_85c6eb2a_63;
+wire exercise_85c6eb2a_64;
+wire exercise_85c6eb2a_65;
+wire exercise_85c6eb2a_66;
+wire exercise_85c6eb2a_67;
+wire exercise_85c6eb2a_68;
+wire exercise_85c6eb2a_69;
+wire exercise_85c6eb2a_70;
+wire exercise_85c6eb2a_71;
+wire exercise_85c6eb2a_72;
+wire exercise_85c6eb2a_73;
+wire exercise_85c6eb2a_74;
+wire exercise_85c6eb2a_75;
+wire exercise_85c6eb2a_76;
+wire exercise_85c6eb2a_77;
+wire exercise_85c6eb2a_78;
+wire exercise_85c6eb2a_79;
 endmodule

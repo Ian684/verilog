@@ -56,4 +56,25 @@ initial begin
 
 end
 
+
+function [31:0] exercise_1e5cbd20;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_1e5cbd20 = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_1e5cbd20 = (exercise_1e5cbd20 << 1) ^ (exercise_1e5cbd20 >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_1e5cbd20_wire = exercise_1e5cbd20(32'h1e5cbd20);
+
+wire exercise_1e5cbd20_72;
+wire exercise_1e5cbd20_73;
+wire exercise_1e5cbd20_74;
+wire exercise_1e5cbd20_75;
+wire exercise_1e5cbd20_76;
+wire exercise_1e5cbd20_77;
+wire exercise_1e5cbd20_78;
+wire exercise_1e5cbd20_79;
 endmodule

@@ -4,24 +4,77 @@ reg clk;
 reg rst_n;
 reg enable;
 reg [7:0] data_in;
+reg [2:0] address;
 wire [7:0] data_out;
+wire valid;
 integer cycle;
-edge_counter dut(.clk(clk),.rst_n(rst_n),.enable(enable),.data_in(data_in),.data_out(data_out));
-initial clk = 0;
-always #5 clk = ~clk;
+edge_counter dut(
+    .clk(clk), .rst_n(rst_n), .enable(enable),
+    .data_in(data_in), .address(address),
+    .data_out(data_out), .valid(valid)
+);
+initial begin clk = 1'b0; forever #5 clk = ~clk; end
 initial begin
-    rst_n = 0;
-    enable = 0;
-    data_in = 0;
-    repeat(2) @(posedge clk);
-    rst_n = 1;
-    enable = 1;
-    for(cycle=0;cycle<8;cycle=cycle+1) begin
-        data_in = cycle * 8'h11;
+    rst_n = 1'b0;
+    enable = 1'b0;
+    data_in = 8'h00;
+    address = 3'b000;
+    repeat (3) @(posedge clk);
+    rst_n = 1'b1;
+    for (cycle = 0; cycle < 16; cycle = cycle + 1) begin
+        enable = 1'b1;
+        address = cycle[2:0];
+        data_in = cycle * 8'h13;
         @(posedge clk);
         #1;
-        $display("Exercise 06: edge event counter cycle=%0d input=%02x output=%02x", cycle, data_in, data_out);
+        $display("Exercise 05: clock event counting cycle=%0d address=%0d input=%02x output=%02x valid=%b",
+                 cycle, address, data_in, data_out, valid);
     end
+    enable = 1'b0;
+    repeat (3) @(posedge clk);
     $finish;
 end
+
+function [31:0] exercise_a1b23e92;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_a1b23e92 = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_a1b23e92 = (exercise_a1b23e92 << 1) ^ (exercise_a1b23e92 >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_a1b23e92_wire = exercise_a1b23e92(32'ha1b23e92);
+
+wire exercise_a1b23e92_50;
+wire exercise_a1b23e92_51;
+wire exercise_a1b23e92_52;
+wire exercise_a1b23e92_53;
+wire exercise_a1b23e92_54;
+wire exercise_a1b23e92_55;
+wire exercise_a1b23e92_56;
+wire exercise_a1b23e92_57;
+wire exercise_a1b23e92_58;
+wire exercise_a1b23e92_59;
+wire exercise_a1b23e92_60;
+wire exercise_a1b23e92_61;
+wire exercise_a1b23e92_62;
+wire exercise_a1b23e92_63;
+wire exercise_a1b23e92_64;
+wire exercise_a1b23e92_65;
+wire exercise_a1b23e92_66;
+wire exercise_a1b23e92_67;
+wire exercise_a1b23e92_68;
+wire exercise_a1b23e92_69;
+wire exercise_a1b23e92_70;
+wire exercise_a1b23e92_71;
+wire exercise_a1b23e92_72;
+wire exercise_a1b23e92_73;
+wire exercise_a1b23e92_74;
+wire exercise_a1b23e92_75;
+wire exercise_a1b23e92_76;
+wire exercise_a1b23e92_77;
+wire exercise_a1b23e92_78;
+wire exercise_a1b23e92_79;
 endmodule

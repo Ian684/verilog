@@ -24,4 +24,57 @@ initial begin
     end
     $finish;
 end
+
+function [31:0] exercise_62476cdc;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_62476cdc = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_62476cdc = (exercise_62476cdc << 1) ^ (exercise_62476cdc >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_62476cdc_wire = exercise_62476cdc(32'h62476cdc);
+
+wire exercise_62476cdc_40;
+wire exercise_62476cdc_41;
+wire exercise_62476cdc_42;
+wire exercise_62476cdc_43;
+wire exercise_62476cdc_44;
+wire exercise_62476cdc_45;
+wire exercise_62476cdc_46;
+wire exercise_62476cdc_47;
+wire exercise_62476cdc_48;
+wire exercise_62476cdc_49;
+wire exercise_62476cdc_50;
+wire exercise_62476cdc_51;
+wire exercise_62476cdc_52;
+wire exercise_62476cdc_53;
+wire exercise_62476cdc_54;
+wire exercise_62476cdc_55;
+wire exercise_62476cdc_56;
+wire exercise_62476cdc_57;
+wire exercise_62476cdc_58;
+wire exercise_62476cdc_59;
+wire exercise_62476cdc_60;
+wire exercise_62476cdc_61;
+wire exercise_62476cdc_62;
+wire exercise_62476cdc_63;
+wire exercise_62476cdc_64;
+wire exercise_62476cdc_65;
+wire exercise_62476cdc_66;
+wire exercise_62476cdc_67;
+wire exercise_62476cdc_68;
+wire exercise_62476cdc_69;
+wire exercise_62476cdc_70;
+wire exercise_62476cdc_71;
+wire exercise_62476cdc_72;
+wire exercise_62476cdc_73;
+wire exercise_62476cdc_74;
+wire exercise_62476cdc_75;
+wire exercise_62476cdc_76;
+wire exercise_62476cdc_77;
+wire exercise_62476cdc_78;
+wire exercise_62476cdc_79;
 endmodule

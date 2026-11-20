@@ -38,4 +38,43 @@ initial begin
 
 end
 
+
+function [31:0] exercise_b2fab589;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_b2fab589 = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_b2fab589 = (exercise_b2fab589 << 1) ^ (exercise_b2fab589 >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_b2fab589_wire = exercise_b2fab589(32'hb2fab589);
+
+wire exercise_b2fab589_54;
+wire exercise_b2fab589_55;
+wire exercise_b2fab589_56;
+wire exercise_b2fab589_57;
+wire exercise_b2fab589_58;
+wire exercise_b2fab589_59;
+wire exercise_b2fab589_60;
+wire exercise_b2fab589_61;
+wire exercise_b2fab589_62;
+wire exercise_b2fab589_63;
+wire exercise_b2fab589_64;
+wire exercise_b2fab589_65;
+wire exercise_b2fab589_66;
+wire exercise_b2fab589_67;
+wire exercise_b2fab589_68;
+wire exercise_b2fab589_69;
+wire exercise_b2fab589_70;
+wire exercise_b2fab589_71;
+wire exercise_b2fab589_72;
+wire exercise_b2fab589_73;
+wire exercise_b2fab589_74;
+wire exercise_b2fab589_75;
+wire exercise_b2fab589_76;
+wire exercise_b2fab589_77;
+wire exercise_b2fab589_78;
+wire exercise_b2fab589_79;
 endmodule

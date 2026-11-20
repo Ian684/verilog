@@ -57,4 +57,24 @@ initial begin
 
 end
 
+
+function [31:0] exercise_a1cc8079;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_a1cc8079 = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_a1cc8079 = (exercise_a1cc8079 << 1) ^ (exercise_a1cc8079 >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_a1cc8079_wire = exercise_a1cc8079(32'ha1cc8079);
+
+wire exercise_a1cc8079_73;
+wire exercise_a1cc8079_74;
+wire exercise_a1cc8079_75;
+wire exercise_a1cc8079_76;
+wire exercise_a1cc8079_77;
+wire exercise_a1cc8079_78;
+wire exercise_a1cc8079_79;
 endmodule

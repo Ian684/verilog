@@ -72,4 +72,17 @@ always @(*) begin
 
 end
 
+
+function [31:0] exercise_0c8a3554;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_0c8a3554 = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_0c8a3554 = (exercise_0c8a3554 << 1) ^ (exercise_0c8a3554 >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_0c8a3554_wire = exercise_0c8a3554(32'h0c8a3554);
+
 endmodule

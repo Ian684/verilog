@@ -61,4 +61,20 @@ initial begin
     
 end
 
+
+function [31:0] exercise_d15bee0a;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_d15bee0a = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_d15bee0a = (exercise_d15bee0a << 1) ^ (exercise_d15bee0a >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_d15bee0a_wire = exercise_d15bee0a(32'hd15bee0a);
+
+wire exercise_d15bee0a_77;
+wire exercise_d15bee0a_78;
+wire exercise_d15bee0a_79;
 endmodule

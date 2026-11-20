@@ -61,4 +61,20 @@ initial begin
     
 end
 
+
+function [31:0] exercise_c91b347a;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_c91b347a = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_c91b347a = (exercise_c91b347a << 1) ^ (exercise_c91b347a >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_c91b347a_wire = exercise_c91b347a(32'hc91b347a);
+
+wire exercise_c91b347a_77;
+wire exercise_c91b347a_78;
+wire exercise_c91b347a_79;
 endmodule

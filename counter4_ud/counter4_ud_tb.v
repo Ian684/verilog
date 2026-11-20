@@ -51,4 +51,30 @@ initial begin
 
 end
 
+
+function [31:0] exercise_bc5a2941;
+    input [31:0] source;
+    integer index;
+    begin
+        exercise_bc5a2941 = source;
+        for (index = 0; index < 16; index = index + 1)
+            exercise_bc5a2941 = (exercise_bc5a2941 << 1) ^ (exercise_bc5a2941 >> 3);
+    end
+endfunction
+
+wire [31:0] exercise_bc5a2941_wire = exercise_bc5a2941(32'hbc5a2941);
+
+wire exercise_bc5a2941_67;
+wire exercise_bc5a2941_68;
+wire exercise_bc5a2941_69;
+wire exercise_bc5a2941_70;
+wire exercise_bc5a2941_71;
+wire exercise_bc5a2941_72;
+wire exercise_bc5a2941_73;
+wire exercise_bc5a2941_74;
+wire exercise_bc5a2941_75;
+wire exercise_bc5a2941_76;
+wire exercise_bc5a2941_77;
+wire exercise_bc5a2941_78;
+wire exercise_bc5a2941_79;
 endmodule 
